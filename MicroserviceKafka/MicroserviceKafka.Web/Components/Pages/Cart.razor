@@ -37,7 +37,7 @@
         var res = await Http.PostAsJsonAsync<OrderModel>("https://localhost:7138/api/order", Model);
         if (res.IsSuccessStatusCode)
         {
-            await JsRuntime.InvokeVoidAsync("alert", "Create order success");
+            await JsRuntime.InvokeVoidAsync("alert", "Order created successfully!");
         }
     }
 }
