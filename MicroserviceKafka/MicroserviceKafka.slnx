@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="MicroserviceKafka.AppHost/MicroserviceKafka.AppHost.csproj" />
+  <Project Path="MicroserviceKafka.Model/MicroserviceKafka.Model.csproj" />
+  <Project Path="MicroserviceKafka.OrderService/MicroserviceKafka.OrderService.csproj" />
+  <Project Path="MicroserviceKafka.ProductService/MicroserviceKafka.ProductService.csproj" />
+  <Project Path="MicroserviceKafka.Web/MicroserviceKafka.Web.csproj" />
+</Solution>

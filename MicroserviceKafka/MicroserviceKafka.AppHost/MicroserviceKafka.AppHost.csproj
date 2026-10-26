@@ -1,0 +1,17 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.2.4">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>a8dd86dd-e8e8-4e53-8280-5a38fa2c6b4b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroserviceKafka.OrderService\MicroserviceKafka.OrderService.csproj" />
+    <ProjectReference Include="..\MicroserviceKafka.ProductService\MicroserviceKafka.ProductService.csproj" />
+    <ProjectReference Include="..\MicroserviceKafka.Web\MicroserviceKafka.Web.csproj" />
+  </ItemGroup>
+
+</Project>

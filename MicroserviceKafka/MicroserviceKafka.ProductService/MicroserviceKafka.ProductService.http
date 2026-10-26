@@ -1,0 +1,6 @@
+@MicroserviceKafka.ProductService_HostAddress = http://localhost:5274
+
+GET {{MicroserviceKafka.ProductService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
