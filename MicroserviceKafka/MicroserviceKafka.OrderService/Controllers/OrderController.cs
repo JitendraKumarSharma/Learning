@@ -1,5 +1,7 @@
-﻿using MicroserviceKafka.Model;
+﻿using Confluent.Kafka;
+using MicroserviceKafka.Model;
 using MicroserviceKafka.OrderService.Data;
+using MicroserviceKafka.OrderService.Kafka;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +11,7 @@ namespace MicroserviceKafka.OrderService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController(OrderDbContext dbContext) : ControllerBase
+    public class OrderController(OrderDbContext dbContext, IKafkaProducer producer) : ControllerBase
     {
         [HttpGet]
         public async Task<List<OrderModel>> GetOrders()
@@ -23,18 +25,18 @@ namespace MicroserviceKafka.OrderService.Controllers
             dbContext.Orders.Add(order);
             await dbContext.SaveChangesAsync();
 
-            //var orderMessage = new OrderMessage
-            //{
-            //    OrderId = order.Id,
-            //    ProductId = order.ProductId,
-            //    Quantity = order.Quantity
-            //};
+            var orderMessage = new OrderMessage
+            {
+                OrderId = order.Id,
+                ProductId = order.ProductId,
+                Quantity = order.Quantity
+            };
 
-            //await producer.ProduceAsync("order-topic", new Message<string, string>
-            //{
-            //    Key = order.Id.ToString(),
-            //    Value = JsonSerializer.Serialize(orderMessage)
-            //});
+            await producer.ProduceAsync("order-topic", new Message<string, string>
+            {
+                Key = order.Id.ToString(),
+                Value = JsonSerializer.Serialize(orderMessage)
+            });
 
             return order;
         }
